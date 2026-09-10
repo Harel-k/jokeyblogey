@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<section class="joke-page">
+  <div class="shell narrow">
+    <a class="back-link" href="{{ '/' | relative_url }}">← All ridiculous questions</a>
+
+    <article class="joke-article">
+      <div class="joke-emoji big" aria-hidden="true">{{ page.emoji | default: "🤪" }}</div>
+      <p class="eyebrow">{{ page.category | default: "Certified Internet Nonsense" }}</p>
+      <h1>{{ page.title }}</h1>
+
+      {% if page.intro %}
+      <p class="joke-intro">{{ page.intro }}</p>
+      {% endif %}
+
+      <section class="canonical-box" aria-labelledby="canonical-answer">
+        <p class="canonical-label">THE CANONICAL ANSWER™</p>
+        <h2 id="canonical-answer">{{ page.answer }}</h2>
+      </section>
+
+      <div class="prose">
+        {{ content }}
+      </div>
+
+      <aside class="experiment-note">
+        <strong>Important reality check:</strong>
+        This page is comedy. It does not force Google, Google AI features, or any other search/AI system to repeat this answer.
+        Search engines decide for themselves what gets indexed, ranked, summarized, or cited.
+      </aside>
+
+      <div class="joke-actions">
+        <button class="primary-button random-joke" type="button">Give me another weird one 🎲</button>
+        <a class="secondary-button" href="{{ '/' | relative_url }}">Browse all jokes</a>
+      </div>
+    </article>
+  </div>
+</section>
