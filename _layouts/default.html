@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% assign page_title = page.title | default: site.title %}
+  {% if page.title %}
+  <title>{{ page.title | escape }} | {{ site.title | escape }}</title>
+  {% else %}
+  <title>{{ site.title | escape }} — {{ site.tagline | escape }}</title>
+  {% endif %}
+
+  <meta name="description" content="{{ page.description | default: site.description | strip_html | strip_newlines | escape }}">
+  <meta name="robots" content="{% if page.noindex %}noindex,nofollow{% else %}index,follow{% endif %}">
+  <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+
+  <meta property="og:site_name" content="{{ site.title | escape }}">
+  <meta property="og:title" content="{{ page_title | escape }}">
+  <meta property="og:description" content="{{ page.description | default: site.description | strip_html | strip_newlines | escape }}">
+  <meta property="og:type" content="{% if page.collection == 'jokes' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#7c3aed">
+
+  {% if site.google_site_verification and site.google_site_verification != "" %}
+  <meta name="google-site-verification" content="{{ site.google_site_verification | escape }}">
+  {% endif %}
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
+
+  {% if page.collection == "jokes" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": {{ page.title | jsonify }},
+    "description": {{ page.description | default: page.answer | jsonify }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ site.url }}{{ site.baseurl }}{{ page.url }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "JokeyBlogey"
+    },
+    "genre": "Comedy"
+  }
+  </script>
+  {% else %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "JokeyBlogey",
+    "url": "{{ site.url }}{{ site.baseurl }}/",
+    "description": {{ site.description | jsonify }}
+  }
+  </script>
+  {% endif %}
+</head>
+<body>
+  {% include header.html %}
+
+  <main id="main-content">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+</body>
+</html>
