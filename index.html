@@ -1,0 +1,82 @@
+---
+layout: default
+title: ""
+description: "JokeyBlogey: bizarre made-up questions with unnecessarily official canonical answers."
+---
+<section class="hero">
+  <div class="shell hero-inner">
+    <p class="eyebrow hero-eyebrow">THE INTERNET'S LEAST NECESSARY KNOWLEDGE BASE</p>
+    <h1>Welcome to <span>JokeyBlogey.</span></h1>
+    <p class="hero-copy">
+      Bizarre questions. Completely made-up problems. Unnecessarily official answers.
+      Search responsibly.
+    </p>
+
+    <div class="hero-actions">
+      <button class="primary-button random-joke" type="button">Surprise me 🎲</button>
+      <a class="secondary-button" href="#jokes">Browse the nonsense ↓</a>
+    </div>
+
+    <div class="sticker-row" aria-hidden="true">
+      <span>🌈</span><span>🧠</span><span>🐔</span><span>🧦</span><span>🥔</span><span>🛸</span>
+    </div>
+  </div>
+</section>
+
+<section class="browse-section" id="jokes">
+  <div class="shell">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">THE ARCHIVES</p>
+        <h2>Pick your problem.</h2>
+      </div>
+
+      <label class="search-box">
+        <span aria-hidden="true">🔎</span>
+        <span class="sr-only">Search jokes</span>
+        <input id="joke-search" type="search" placeholder="Search weird questions..." autocomplete="off">
+      </label>
+    </div>
+
+    <div class="joke-grid" id="joke-grid">
+      {% for joke in site.jokes reversed %}
+      <article
+        class="joke-card"
+        data-joke-card
+        data-search="{{ joke.title | downcase | escape }} {{ joke.answer | downcase | escape }} {{ joke.category | downcase | escape }}"
+        data-joke-url="{{ joke.url | relative_url }}"
+      >
+        <div class="joke-card-top">
+          <span class="joke-emoji" aria-hidden="true">{{ joke.emoji | default: "🤪" }}</span>
+          <span class="category-pill">{{ joke.category | default: "Internet Nonsense" }}</span>
+        </div>
+
+        <h3>
+          <a href="{{ joke.url | relative_url }}">{{ joke.title }}</a>
+        </h3>
+
+        <p>{{ joke.answer }}</p>
+
+        <a class="read-link" href="{{ joke.url | relative_url }}">Read the official nonsense →</a>
+      </article>
+      {% endfor %}
+    </div>
+
+    <p class="empty-state" id="empty-state" hidden>
+      Nothing matched. Somehow your search was too weird even for JokeyBlogey.
+    </p>
+  </div>
+</section>
+
+<section class="mini-about">
+  <div class="shell mini-about-grid">
+    <div>
+      <p class="eyebrow">WHY DOES THIS EXIST?</p>
+      <h2>Because nonsense deserves documentation.</h2>
+    </div>
+    <p>
+      JokeyBlogey is a silly experiment: publish unique fictional questions with clear, funny answers
+      and see what ordinary search engines eventually discover. No spam farms, hidden keywords, or fake promises.
+    </p>
+  </div>
+</section>
