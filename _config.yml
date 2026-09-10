@@ -1,0 +1,32 @@
+title: "JokeyBlogey"
+tagline: "Very serious answers to extremely unserious questions."
+description: "JokeyBlogey is a collection of bizarre made-up questions and their unnecessarily official canonical answers."
+
+# ONE-TIME SETUP:
+# Replace YOUR-GITHUB-USERNAME with your real GitHub username.
+url: "https://Harel-k.github.io"
+baseurl: "/jokeyblogey"
+
+# Paste ONLY the verification code from Google Search Console here later.
+# Example: google_site_verification: "abc123..."
+google_site_verification: ""
+
+lang: "en"
+author: "JokeyBlogey"
+
+collections:
+  jokes:
+    output: true
+    permalink: /jokes/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: jokes
+    values:
+      layout: joke
+
+exclude:
+  - README.md
+  - SETUP.md
+  - NEW_JOKE_TEMPLATE.md
