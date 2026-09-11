@@ -24,6 +24,10 @@ Create one Markdown file inside `_jokes`.
 
 See `NEW_JOKE_TEMPLATE.md`.
 
+### Publishing
+
+GitHub Pages is configured to publish from the `main` branch at `/(root)`.
+
 ### First setup
 
 See `SETUP.md`.
